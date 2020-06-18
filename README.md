@@ -1,3 +1,51 @@
+# Important note
+This original react-bootsrap package from npm https://www.npmjs.com/package/react-bootstrap , https://github.com/react-bootstrap/react-bootstrap . Changes done:
+1. src/ModelDialog.js 49 line edited. Deleted harcoded "modal-content" div. Modal structure now this:
+```
+function Example() {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Launch static backdrop modal
+      </Button>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+      >
+        <div className="modal-content">
+            <Modal.Header closeButton>
+              <Modal.Title>Modal title</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              I will not close if you click outside me. Don't even try to press
+              escape key.
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button variant="primary">Understood</Button>
+            </Modal.Footer>
+        </div>
+      </Modal>
+    </>
+  );
+}
+
+render(<Example />);
+
+```
+This change is done, that div "modal-content" be customizable and can be wrapped by another elements.
+
+
 # React-Bootstrap
 
 > [Bootstrap 4][bootstrap] components built with [React][react].
